@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   BookOpen,
   Users,
@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   ExternalLink,
+  type LucideIcon,
 } from 'lucide-react';
 
 // --- DATOS DE EJEMPLO (Aquí debes cargar tu contenido real del TP3, TP4, etc.) ---
@@ -46,15 +47,24 @@ const articulosInnovacion = [
 ];
 
 // --- COMPONENTES UI ---
+type TSectionTitleProps = {
+  children: React.ReactNode;
+  icon: LucideIcon;
+};
 
-const SectionTitle = ({ children, icon: Icon }) => (
+const SectionTitle = ({ children, icon: Icon }: TSectionTitleProps) => (
   <div className='flex items-center gap-3 mb-8 border-b-2 border-teal-100 pb-2'>
     {Icon && <Icon className='text-blue-900 w-8 h-8' />}
     <h2 className='text-3xl font-bold text-blue-900'>{children}</h2>
   </div>
 );
 
-const Card = ({ children, className = '' }) => (
+type TCardProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+const Card = ({ children, className = '' }: TCardProps) => (
   <div
     className={`bg-white rounded-xl shadow-lg border border-slate-100 p-6 hover:shadow-xl transition-shadow ${className}`}
   >
@@ -62,7 +72,13 @@ const Card = ({ children, className = '' }) => (
   </div>
 );
 
-const NavItem = ({ href, label, onClick }) => (
+type TNavItemProps = {
+  href: string;
+  label: string;
+  onClick?: () => void;
+};
+
+const NavItem = ({ href, label, onClick }: TNavItemProps) => (
   <a
     href={href}
     onClick={onClick}
@@ -501,17 +517,15 @@ const App = () => {
               Bibliotecario Digital
             </h3>
             <p className='mb-2'>
-              Desarrollado por:{' '}
-              <span className='text-white font-semibold'>
-                [Tu Nombre Completo]
-              </span>
+              Hecho por:{' '}
+              <span className='text-white font-semibold'>Nazareno</span>
             </p>
             <p className='text-sm text-blue-300'>
               Universidad Nacional de Mar del Plata - Depto. Ciencia de la
               Información
             </p>
             <p className='text-sm text-blue-300 mt-1'>
-              Cátedra: Bibliotecario Escolar a Distancia
+              Carrera: Bibliotecario Escolar a Distancia
             </p>
           </div>
           <div className='text-sm text-blue-300 border-t md:border-t-0 md:border-l border-blue-800 md:pl-8 pt-4 md:pt-0'>
